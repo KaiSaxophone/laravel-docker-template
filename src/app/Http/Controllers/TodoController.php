@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 
 use App\Todo;
 
@@ -32,7 +32,7 @@ class TodoController extends Controller
     }
 
     // フォームに入力された値を取得
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         // フォームから送信された入力値を一括取得
         $inputs = $request->all();
@@ -60,7 +60,7 @@ class TodoController extends Controller
     }
 
     // 更新処理
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         // フォームから送信された値を全件取得
         $inputs = $request->all();
