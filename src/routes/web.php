@@ -35,3 +35,6 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 
 // 更新処理
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
+
+// 削除処理
+Route::delete('/todo/{id}', 'TodoController@delete')->name('todo.delete');
