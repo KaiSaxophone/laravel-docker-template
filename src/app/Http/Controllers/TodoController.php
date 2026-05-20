@@ -9,10 +9,18 @@ use App\Todo;
 // /todoアクセス時の処理
 class TodoController extends Controller
 {
+    private $todo;
+
+    // コンストラクタでTodoモデルをインスタンス化
+    public function __construct(Todo $todo)
+    {
+        // $this->todoにTodoインスタンスを代入
+        $this->todo = $todo;
+    }
+
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all();
+        $todos = $this->todo->all();
 
         return view('todo.index', ['todos' => $todos]);
     }
@@ -29,9 +37,8 @@ class TodoController extends Controller
         // フォームから送信された入力値を一括取得
         $inputs = $request->all();
 
-        $todo = new Todo();
-        $todo->fill($inputs);
-        $todo->save();
+        $this->todo->fill($inputs);
+        $this->todo->save();
 
         return redirect()->route('todo.index');
     }
@@ -39,8 +46,7 @@ class TodoController extends Controller
     // 詳細表示
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
+        $todo = $this->todo->find($id);
 
         return view('todo/show', ['todo' => $todo]);
     }
