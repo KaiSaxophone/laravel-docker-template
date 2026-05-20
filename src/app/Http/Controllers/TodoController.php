@@ -43,11 +43,19 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
     }
 
-    // 詳細表示
+    // 詳細画面を表示
     public function show($id)
     {
         $todo = $this->todo->find($id);
 
         return view('todo/show', ['todo' => $todo]);
+    }
+
+    // 編集画面を表示
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
