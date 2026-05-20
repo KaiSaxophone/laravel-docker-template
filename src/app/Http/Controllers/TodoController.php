@@ -58,4 +58,17 @@ class TodoController extends Controller
 
         return view('todo.edit', ['todo' => $todo]);
     }
+
+    // 更新処理
+    public function update(Request $request, $id)
+    {
+        // フォームから送信された値を全件取得
+        $inputs = $request->all();
+        // DBから該当idのレコードを取得する
+        $todo = $this->todo->find($id);
+        // 対象idのレコードにフォームの値を保存
+        $todo->fill($inputs)->save();
+
+        return redirect()->route('todo.show', $todo->id);
+    }
 }

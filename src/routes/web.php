@@ -15,17 +15,23 @@
 //     echo 'Hello World!';
 // });
 
+// 画面遷移のルート定義
 // 一覧画面の表示
 Route::get('/todo', 'TodoController@index')->name('todo.index');
 
 // 新規作成画面の表示
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 
-// 新規作成処理
-Route::post('/todo', 'TodoController@store')->name('todo.store');
-
 // 詳細画面の表示
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 
 // 編集画面の表示
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
+
+
+// DB更新処理
+// 新規作成処理
+Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+// 更新処理
+Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
